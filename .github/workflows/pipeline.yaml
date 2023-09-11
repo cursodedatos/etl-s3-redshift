@@ -1,0 +1,31 @@
+name: Update Code To AWS Lambda
+
+# on commit push, run job
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    # worker runs on latest ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+    # checkout to our repository so we have access to the source code
+    - uses: actions/checkout@v2
+
+    # the actual deployment to google
+    - name: Deploy lambda function
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+
+      - name: zip Lambda Function
+        run: |
+          zip -r9 lambda.zip lambdaFunction.py
+
+      - name: deploy AWS Lambda
+        run: |
+          aws lambda update-function-code --function-name ${{ github.event.repository.name }} --zip-file fileb://lambda.zip
