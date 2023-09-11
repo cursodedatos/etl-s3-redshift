@@ -23,7 +23,7 @@ jobs:
 
     - name: zip Lambda Function
       run: |
-        zip -r9 lambda.zip lambdaFunction.py
+        zip lambda.zip lambda_function.py
 
     - name: deploy AWS Lambda
       run: |
