@@ -6,8 +6,9 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  release:
     # worker runs on latest ubuntu
+    name: Deploy lambda function
     runs-on: ubuntu-latest
 
     steps:
