@@ -12,10 +12,8 @@ jobs:
 
     steps:
     # checkout to our repository so we have access to the source code
-    - uses: actions/checkout@v2
-
-    # the actual deployment to google
-    - name: Deploy lambda function
+      - uses: actions/checkout@v2
+      - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
