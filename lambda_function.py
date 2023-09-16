@@ -29,16 +29,15 @@ def lambda_handler(event, context):
         with open(dir_file, mode='r') as csv_file:
             data_csv = csv.reader(csv_file,delimiter=';')
 
-
-        # Transform
-        for row in data_csv:
-            line_count += 1
-            if line_count == 1:
-                pass
-            else:      
-                #print(row)
-                SQL_command = "INSERT INTO dev.public.bank VALUES  ({},'{}',{},'{}');".format(row[0],row[1],row[2],timestamp)
-                rows_to_insert.append(SQL_command)
+            # Transform
+            for row in data_csv:
+                line_count += 1
+                if line_count == 1:
+                    pass
+                else:      
+                    #print(row)
+                    SQL_command = "INSERT INTO dev.public.bank VALUES  ({},'{}',{},'{}');".format(row[0],row[1],row[2],timestamp)
+                    rows_to_insert.append(SQL_command)
 
 
         # Insert     
