@@ -41,7 +41,8 @@ def lambda_handler(event, context):
                 rows_to_insert.append(SQL_command)
 
 
-        # Insert              
+        # Insert     
+        client = boto3.client('redshift-data')          
         array_lenght = len(rows_to_insert)    
         for i in range(0,array_lenght,batch_size):
             if i >= batch_size:
