@@ -36,7 +36,8 @@ def lambda_handler(event, context):
                     pass
                 else:      
                     #print(row)
-                    SQL_command = "INSERT INTO dev.public.bank VALUES  ({},'{}',{},'{}');".format(row[0],row[1],row[2],timestamp)
+                    SQL_command = "INSERT INTO dev.public.bank VALUES  ({},'{}',{},'{}');".format(row[0],row[1],row[5],timestamp)
+                    print (SQL_command)
                     rows_to_insert.append(SQL_command)
 
 
@@ -92,7 +93,7 @@ def load_redshift(rows_to_insert,client):
             SecretArn = 'arn:aws:secretsmanager:us-east-1:799412981296:secret:redshift-Imiurq'
             )
         print (response)
-        #time.sleep(1)
+        #time.sleep(0.2)
         #response_query = client.describe_statement(
         #    Id = response['Id']
         #    )
@@ -101,4 +102,3 @@ def load_redshift(rows_to_insert,client):
     except ValueError as e:
         print ("error loading in redshift")
         logger.error(e)
-
