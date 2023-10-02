@@ -12,7 +12,7 @@ def lambda_handler(event, context):
     try:
         #Extract from S3
         
-        bucket_name = 'curso-datos-bank'
+        bucket_name = 'bucket-name'
         file_name = 'bank.csv'
         dir_file = '/tmp/' + file_name
         s3 = boto3.resource('s3')
@@ -70,7 +70,7 @@ def lambda_handler(event, context):
                         #WorkgroupName ='default-workgroup',
                         #Database = 'dev',
                         #Sqls = rows_to_insert,
-                        #SecretArn = 'arn:aws:secretsmanager:us-east-1:799412981296:secret:redshift-Imiurq'
+                        #SecretArn = 'arn:aws:secretsmanager:us-east-1:xxxx:secret:redshift-Imiurq'
                         #)
                     #print (response)
                     #rows_to_insert = []
