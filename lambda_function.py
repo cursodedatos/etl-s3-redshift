@@ -90,7 +90,7 @@ def load_redshift(rows_to_insert,client):
             WorkgroupName ='default-workgroup',
             Database = 'dev',
             Sqls = rows_to_insert,
-            SecretArn = 'arn:aws:secretsmanager:us-east-1:799412981296:secret:redshift-Imiurq'
+            SecretArn = 'arn:aws:secretsmanager:us-east-1:xxxxx:secret:redshift-Imiurq'
             )
         print (response)
         #time.sleep(0.2)
