@@ -35,8 +35,7 @@ def lambda_handler(event, context):
                 if line_count == 1:
                     pass
                 else:      
-                    #print(row)
-                    SQL_command = "INSERT INTO dev.public.bank VALUES  ({},'{}',{},'{}');".format(row[0],row[1],row[5],timestamp)
+                    SQL_command = "INSERT INTO dev.public.bank VALUES  ({},'{}','{}','{}','{}',{},'{}');".format(row[0],row[1],row[2],row[3],row[4],row[5],timestamp)
                     print (SQL_command)
                     rows_to_insert.append(SQL_command)
 
@@ -62,19 +61,6 @@ def lambda_handler(event, context):
             'body': json.dumps('Succesfully')
         }
 
-                #if int(line_count/batch_size) == float(line_count/batch_size):
-                    #print (line_count)
-            
-                    # Load in Redshift in batch
-                    #response = client.batch_execute_statement(
-                        #WorkgroupName ='default-workgroup',
-                        #Database = 'dev',
-                        #Sqls = rows_to_insert,
-                        #SecretArn = 'arn:aws:secretsmanager:us-east-1:xxxx:secret:redshift-Imiurq'
-                        #)
-                    #print (response)
-                    #rows_to_insert = []
-
     except ValueError as e:
         print ("error main function")
         logger.error(e)
@@ -93,11 +79,6 @@ def load_redshift(rows_to_insert,client):
             SecretArn = 'arn:aws:secretsmanager:us-east-1:xxxxx:secret:redshift-Imiurq'
             )
         print (response)
-        #time.sleep(0.2)
-        #response_query = client.describe_statement(
-        #    Id = response['Id']
-        #    )
-        #print (response_query )  
 
     except ValueError as e:
         print ("error loading in redshift")
